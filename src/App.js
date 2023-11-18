@@ -7,25 +7,28 @@ import SignIn from './pages/SignIn';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Profile from './components/Profile';
-import { AuthProvider } from './auth/AuthContext';
+import { AuthProvider } from './context/AuthContext';
+// import PrivateRoutes from './components/PrivateRoutes';
 
 function App() {
-  
+
   return (
     <>
       <AuthProvider>
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route path='/' element={<Register/>}/>
-          <Route path='/new' element={<NewNote/>} />
-          <Route path='/:id'>
-            <Route index element={<h1>Show</h1>}/>
-            <Route path='edit' element={<EditNote/>}/>
-          </Route>
-          <Route path='/sign-in' element={<SignIn/>}/>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='*' element={<Navigate to='/' />}/>
-          <Route path='/profile' element={<Profile/>}/> 
+          <Route path='/' element={<Register />} />
+          <Route path='/sign-in' element={<SignIn />} />
+          <Route path='*' element={<Navigate to='/' />} />
+            <Route path='/:id'>
+              <Route index element={<h1>Show</h1>} />
+              <Route path='edit' element={<EditNote />} />
+            </Route>
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/new' element={<NewNote />} />
+            <Route path='/home' element={<Home />} />
+          {/* <Route element={<PrivateRoutes/>}> */}
+          {/* </Route> */}
         </Routes>
       </AuthProvider>
     </>

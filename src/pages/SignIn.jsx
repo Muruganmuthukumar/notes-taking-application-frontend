@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 function SignIn() {
   const [username, setUsername] = useState("");
@@ -21,7 +21,6 @@ function SignIn() {
           password,
         }),
       });
-
       if (response.ok) {
         const data = await response.json();
         login(data.userId, data.token);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreatableSelect from "react-select/creatable";
 import "../styles/NoteForm.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
   const [note, setNote] = useState({
@@ -10,7 +10,7 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
     tags: [],
     ...initialValues,
   });
-
+  const navigate = useNavigate();
   useEffect(() => {
     setNote({
       ...note,
@@ -44,6 +44,10 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
     onSubmit(note);
   };
 
+  const setBack = ()=>{
+    navigate('/home')
+  }
+
   return (
     <section className="noteform-container">
       <div className="noteform">
@@ -57,7 +61,7 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
           />
 
           <label>Content</label>
-          <textarea name="content" value={note.content} onChange={handleChange} />
+          <textarea rows={15} name="content" value={note.content} onChange={handleChange} />
 
           <label>Tags</label>
           <CreatableSelect
@@ -69,7 +73,7 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
             <button type="submit" className={buttonClass}>
               Save
             </button>
-              <button type="button" className="back-btn">
+              <button type="button" onClick={setBack} className="back-btn">
                   Back
               </button>
         </form>
