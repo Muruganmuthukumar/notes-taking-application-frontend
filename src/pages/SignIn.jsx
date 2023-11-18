@@ -5,8 +5,8 @@ import { useAuth } from "../auth/AuthContext";
 function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,9 +23,10 @@ function SignIn() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        login(data.userId, data.token);
         console.log("User logged in successfully");
-        login();
-        navigate("/home");
+        navigate('/home')
       } else {
         const data = await response.json();
         console.error("Login failed:", data.message);

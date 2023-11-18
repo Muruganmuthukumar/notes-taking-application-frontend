@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Register.css';
+import '../styles/Register.css'
 
-const Register = () => {
+function Register() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState(''); 
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
@@ -24,12 +24,14 @@ const Register = () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('token', data.token);
         console.log('User registered successfully');
-        navigate('/signin')
-    } else {
+        navigate('/sign-in');
+      } else {
         const data = await response.json();
         console.error('Registration failed:', data.message);
-
       }
     } catch (error) {
       console.error('Registration failed:', error.message);
@@ -37,16 +39,38 @@ const Register = () => {
   };
 
   return (
-        <div className='register-form'>
-        <h2>Sign Up</h2>
-        <form action="">
-            <input type="text" placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="email" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
-            <button className='btn-1' onClick={handleRegister}>Sign up</button>
-            <span>Have an account? <Link to='/signin'>Sign in</Link></span>
+    <>
+      <div className="register-form">
+        <h2>Register</h2>
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button className="btn-1" type="submit">
+            Register
+          </button>
+          <span>
+            Already have an account? <Link to="/sign-in">Sign in</Link>
+          </span>
         </form>
-        </div>  );
-};
+      </div>
+    </>
+  );
+}
 
 export default Register;

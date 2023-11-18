@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Profile from './components/Profile';
 import { AuthProvider } from './auth/AuthContext';
 
 function App() {
@@ -21,9 +22,10 @@ function App() {
             <Route index element={<h1>Show</h1>}/>
             <Route path='edit' element={<EditNote/>}/>
           </Route>
-          <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/sign-in' element={<SignIn/>}/>
           <Route path='/home' element={<Home/>}/>
           <Route path='*' element={<Navigate to='/' />}/>
+          <Route path='/profile' element={<Profile/>}/> 
         </Routes>
       </AuthProvider>
     </>

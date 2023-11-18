@@ -1,0 +1,78 @@
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 88vh;
+  }
+  
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .note-item {
+    border: 1px solid #ddd;
+    margin: 15px;
+    padding: 10px;
+    width: 250px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  
+  .main-heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .add-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .search-container {
+    margin-bottom: 16px;
+  }
+  
+  .tag-select {
+    width: 100%;
+  }
+  
+  .notes-heading {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .notes-list {
+    list-style: none;
+    padding: 0;
+  }  
+
+.tag-input {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .notes-list {
+      display: block;
+    }
+  
+    .note-item {
+      width: 100%; 
+    }
+  }
+  
+  

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 
-const Select = ({ setSelectedTags }) => {
+const Select = () => {
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState([]);
-  
   const components = {
     DropdownIndicator: null,
   };
@@ -12,7 +11,7 @@ const Select = ({ setSelectedTags }) => {
     label,
     value: label, 
   });
-  // console.log(inputValue, value);
+  console.log(inputValue, value);
 
   const handleKeyDown = (event) => {
     if (!inputValue) return;
@@ -27,7 +26,7 @@ const Select = ({ setSelectedTags }) => {
         break;
     }
   };
-  setSelectedTags(value);
+  // setSelectedTags(value);
   return (
     <CreatableSelect
       components={components}

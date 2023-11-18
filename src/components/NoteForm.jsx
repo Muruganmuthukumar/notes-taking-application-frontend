@@ -69,6 +69,9 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
             <button type="submit" className={buttonClass}>
               Save
             </button>
+              <button type="button" className="back-btn">
+                  Back
+              </button>
         </form>
       </div>
     </section>
