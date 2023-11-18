@@ -23,21 +23,17 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
   };
 
   const handleTagsChange = (newTags, { action, removedValue }) => {
-    // Handle tag creation or deletion
     if (action === "create-option") {
-      // User created a new tag
       setNote({
         ...note,
         tags: [...note.tags, newTags[newTags.length - 1].value],
       });
     } else if (action === "remove-value" && removedValue.__isNew__) {
-      // User removed a newly created tag
       setNote({
         ...note,
         tags: note.tags.filter((tag) => tag !== removedValue.value),
       });
     } else {
-      // User selected an existing tag
       setNote({ ...note, tags: newTags.map((tag) => tag.value) });
     }
   };

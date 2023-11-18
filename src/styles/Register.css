@@ -1,0 +1,73 @@
+.register-form {
+height: 88vh;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+/* width: 100%; */
+/* max-width: 400px; */
+padding: 20px;
+background-color: #f1f5f1;
+}
+.register-form form{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.register-form h2 {
+text-align: center;
+color: #333;
+font-size: 35px;
+margin-bottom: 50px;
+font-weight: 500;
+}
+
+.register-form input {
+width: 100%;
+padding: 15px;
+margin-bottom: 20px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 5px;
+outline: none;
+font-size: 1em;
+}
+.register-form input::placeholder{
+    color: #3333339a;
+}
+.register-form input:focus{
+    border: 1px solid #555;
+}
+
+.register-form button {
+width: 100%;
+padding: 15px;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-transform: uppercase;
+font-size: 1em;
+letter-spacing: .5px;
+}
+.register-form form .btn-1{
+    background-color: #334155;
+}
+
+.register-form button:hover {
+    opacity: 90%;
+}
+.register-form button:active{
+    opacity: 98%;
+}
+.register-form form span{
+    font-size: 15px;
+    color: #000;
+}
+.register-form form span a{
+    text-decoration: none;
+    color: rgb(0, 204, 255);
+    font-weight: 500;
+}
