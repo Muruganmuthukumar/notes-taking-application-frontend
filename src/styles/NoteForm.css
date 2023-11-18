@@ -1,0 +1,62 @@
+.noteform-container{
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+  
+  .noteform .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .noteform h2 {
+    color: #333;
+  }
+  
+  .noteform form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .noteform label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .noteform input,
+  textarea,
+  button {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .noteform button {
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .noteform .button-edit {
+    background-color: #007bff;
+  }
+  
+  .noteform .button-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Create page button styles */
+  .noteform .button-create {
+    background-color: #28a745;
+  }
+  
+  .noteform .button-create:hover {
+    background-color: #218838;
+  }
