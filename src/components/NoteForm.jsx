@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreatableSelect from "react-select/creatable";
 import "../styles/NoteForm.css";
+import { Link } from "react-router-dom";
 
 const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
   const [note, setNote] = useState({
@@ -47,7 +48,7 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
     <section className="noteform-container">
       <div className="noteform">
         <form onSubmit={handleSubmit}>
-          <label>Title:</label>
+          <label>Title</label>
           <input
             type="text"
             name="title"
@@ -55,19 +56,19 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
             onChange={handleChange}
           />
 
-          <label>Content:</label>
+          <label>Content</label>
           <textarea name="content" value={note.content} onChange={handleChange} />
 
-          <label>Tags:</label>
+          <label>Tags</label>
           <CreatableSelect
             isMulti
             onChange={handleTagsChange}
             options={note.tags.map((tag) => ({ value: tag, label: tag }))}
           />
 
-          <button type="submit" className={buttonClass}>
-            Save
-          </button>
+            <button type="submit" className={buttonClass}>
+              Save
+            </button>
         </form>
       </div>
     </section>
