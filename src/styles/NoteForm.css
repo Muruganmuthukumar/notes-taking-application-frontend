@@ -2,15 +2,16 @@
     font-family: 'Arial', sans-serif;
     background-color: #f8f8f8;
     width: 100%;
-    height:82.5vh;
+    height:auto;
   }
   
   .noteform{
-    height: 100%;
+    height: auto;
     max-width: 1000px;
     padding: 25px;   
     margin: 0 auto; 
     box-sizing: border-box;
+    padding: 50px 0px;
   }
   .noteform form {
     margin: 0px auto;
@@ -73,6 +74,7 @@
   
   .noteform .button-create {
     background-color: #28a745;
+    margin-top: 30px;
   }
   
   .noteform .button-create:hover {

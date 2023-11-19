@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,9 +7,12 @@ const Navbar = () => {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
-
+  const location=useLocation() 
   const handleClick=()=>{
     navigate('/profile')
+    if(location.pathname==="/profile"){
+      navigate('/home')
+    }
   }
 
 
@@ -25,15 +28,15 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <Link to="/">
-          <img src="/path/to/your/logo.png" alt="Logo" className="logo" />
+        <Link to="/home">
+          <h3><span>Scribble</span> Notes</h3>
         </Link>
       </div>
       {userId?
         <div className="navbar-right">
           <div className="profile" onClick={handleClick}>
             <div className="profile-image">{userFirstLetter}</div>
-            {/* <div className="profile-name">{userName}</div> */}
+            <div className="profile-name">{userName}</div>
           </div>
         </div>
       :""}

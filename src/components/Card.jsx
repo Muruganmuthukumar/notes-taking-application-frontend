@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/Card.css'
 function Card({ handleDeleteNote, editingId, setShow, show}) {
     const handleClick=()=>{
         handleDeleteNote(editingId)
@@ -9,13 +9,17 @@ function Card({ handleDeleteNote, editingId, setShow, show}) {
         setShow(!show)
     }
   return (
-    <>
-        <div>
-            <h2>are you sure want to delete this note?</h2>
-            <button onClick={handleClick}>Yes</button>
-            <button onClick={handleClick2}>No</button>
+    <div className='card-container'>
+        <div className='card'>
+            <div>
+                <p>are you sure want to delete this note?</p>
+            </div>
+            <div className='btn-container'>
+                <button onClick={handleClick}>Yes</button>
+                <button onClick={handleClick2}>No</button>
+            </div>
         </div>
-    </>
+    </div>
   )
 }
 

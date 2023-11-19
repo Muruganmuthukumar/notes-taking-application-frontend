@@ -3,7 +3,7 @@ import CreatableSelect from "react-select/creatable";
 import "../styles/NoteForm.css";
 import { useNavigate } from 'react-router-dom';
 
-const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
+const NoteForm = ({ initialValues, onSubmit }) => {
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -70,7 +70,7 @@ const NoteForm = ({ initialValues, onSubmit, buttonClass }) => {
             options={note.tags.map((tag) => ({ value: tag, label: tag }))}
           />
 
-            <button type="submit" className={buttonClass}>
+            <button type="submit" className="button-create">
               Save
             </button>
               <button type="button" onClick={setBack} className="back-btn">

@@ -27,7 +27,7 @@ function Home() {
       .catch((error) => console.error("Error fetching notes:", error));
       // eslint-disable-next-line
   }, []);
-console.log(notes);
+// console.log(notes);
   const handleAddNote = () => {
     navigate("/new");
   };
@@ -74,10 +74,11 @@ console.log(notes);
   return (
     <>
       <main className="main-container">
-        <h1 className="main-heading">Notes App</h1>
-        <button className="add-button" onClick={handleAddNote}>
-          Add Note
-        </button>
+        <div className="add-btn-container">
+          <button className="add-button" onClick={handleAddNote}>
+            Add Note
+          </button>
+        </div>
         <div className="search-container">
           <Select
             className="tag-select"

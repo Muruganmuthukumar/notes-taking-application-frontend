@@ -43,8 +43,7 @@ const EditNote = () => {
 
   return (
     <div>
-      <h2>Edit Note</h2>
-      {initialNoteData && <NoteForm initialValues={initialNoteData} onSubmit={handleSaveNote} buttonClass="button-edit"/>}
+      {initialNoteData && <NoteForm initialValues={initialNoteData} onSubmit={handleSaveNote}/>}
     </div>
   );
 };

@@ -12,6 +12,9 @@
     font-size: 25px;
     color: #383838;
     text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .note-item .note-content{

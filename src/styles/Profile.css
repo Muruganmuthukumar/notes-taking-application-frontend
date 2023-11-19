@@ -1,68 +1,184 @@
 .profile-container {
-max-width: 400px;
-margin: 50px auto;
-padding: 20px;
-border: 1px solid #ddd;
-border-radius: 8px;
-background-color: #fff;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.219);
+    
+}
+.profile-content h1{
+    margin-top: -50px;
+    margin-bottom: -30px;
+}
+.profile-content {
+    margin-top: 30px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-input{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+.profile-input-container{
+    height: 150px;
+    width: 100%;
+    /* background-color: aqua; */
+}
+.edit-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 16px;
 }
 
-.profile-container h1 {
-font-size: 24px;
-margin-bottom: 20px;
-color: #333;
+.profile-input input[type="text"]{
+    margin-bottom: 16px;
+    padding: 8px;
+    height: 45px;
+    width: 90%;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+.profile-container label{
+    font-size: 18px;
+    display: block;
+    align-self: flex-start;
+    margin-left: 2.5rem;
+    margin-bottom: 8px;
+}
+.edit-container input[type="password"] {
+    margin-bottom: 16px;
+    padding: 8px;
+    height: 45px;
+    width: 80%;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
 }
 
-.profile-container div {
-margin-bottom: 15px;
-}
-
-.profile-container label {
-display: block;
-font-weight: bold;
-margin-bottom: 5px;
-}
-
-.profile-container input,
-.profile-container select {
-width: 100%;
-padding: 8px;
-margin-top: 5px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
-
-.profile-container div {
-display: flex;
-align-items: center;
-}
-
-.profile-container select {
-margin-left: 10px;
+.profile-container input:focus {
+    border: 1px solid blue;
 }
 
 .profile-buttons {
-display: flex;
-justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 100%;
+    height: 150px;
 }
 
-.profile-buttons button {
-padding: 10px;
-margin-top: 10px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-transition: background-color 0.3s;
+.profile-container .btns {
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
 }
 
-.profile-buttons button:hover {
-background-color: #ddd;
+.profile-container .btns .save{
+    background-color: #27be4a;
+
+}
+.profile-container button {
+    padding: 7px;
+    width: 150px;
+    height: 45px;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    margin: 0 auto;
+    display: block;
+    background-color: rgb(66, 63, 236);
+    cursor: pointer;
+
 }
 
-@media screen and (max-width: 600px) {
-.profile-container {
-    width: 80%;
+.profile-container button:hover {
+    opacity: 85%;
 }
+
+.profile-container button:active {
+    opacity: 98%;
+}
+
+
+.profile-container .data{
+    font-size: 18px;
+    /* background-color: aqua; */
+    height: 45px;
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    text-transform: capitalize;
+}
+.profile-container .logout{
+    width: 89%;
+    margin-bottom: 20px;
+    background-color: rgb(153, 153, 153);
+    color: #555;
+}
+.profile-container .pass-btn{
+    background-color: rgb(93, 52, 243);
+    align-self: flex-end;
+    margin-left:65px;
+}
+.profile-container .delete{
+    background-color: rgb(153, 153, 153);
+    color: #555;
+    margin: 0 auto;
+    width: 89%;
+}
+.profile-container .last-btns{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    /* background-color: aqua; */
+    margin-top: 30px;
+}
+.profile-container .edit{
+    background-color: #27be4a;
+}
+.profile-container .cancel{
+    background-color: coral;
+}
+.profile-container .back{
+    background-color: dodgerblue;
+}
+.profile-container .new-pass{
+    background-color: rgb(153, 153, 153);
+    color: #555;
+    margin: 0 auto;
+    width: 89%;
+    margin-bottom: 20px;
 }

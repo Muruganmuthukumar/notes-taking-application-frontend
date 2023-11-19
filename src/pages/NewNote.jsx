@@ -24,8 +24,7 @@ const NewNote = () => {
 
   return (
     <div>
-      <h2>New Note</h2>
-      <NoteForm onSubmit={handleCreateNote} buttonClass="button-create"/>
+      <NoteForm onSubmit={handleCreateNote}/>
     </div>
   );
 };

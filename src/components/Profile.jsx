@@ -9,7 +9,7 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [selectedTheme, setSelectedTheme] = useState("light");
+  const [passwordMode, setPasswordMode] = useState(false);
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
 
@@ -69,10 +69,10 @@ const Profile = () => {
         },
         body: JSON.stringify({ password, newPassword }),
       });
-      // Reset password fields after successful password change
       setPassword("");
       setNewPassword("");
       setConfirmPassword("");
+      setPasswordMode(false);
     } catch (error) {
       console.error("Error changing password:", error);
     }
@@ -109,9 +109,12 @@ const Profile = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleThemeChange = (e) => {
-    setSelectedTheme(e.target.value);
-    // Apply the theme change logic here (you can use a global context or CSS classes)
+  const handlePasswordMode = () => {
+    setPasswordMode(true);
+    setEditMode(false);
+  };
+  const handleCancelPasswordMode = () => {
+    setPasswordMode(false);
   };
 
   const handleLogout = () => {
@@ -121,6 +124,7 @@ const Profile = () => {
 
   const handleEditClick = () => {
     setEditMode(true);
+    setPasswordMode(false);
   };
 
   const handleCancelEdit = () => {
@@ -132,104 +136,127 @@ const Profile = () => {
   };
 
   return (
-    <div className={`profile-container ${selectedTheme}`}>
-      <h1>User Profile</h1>
-      <div className="profile-input">
-        <label>Username:</label>
-        {editMode ? (
-          <input
-            type="text"
-            name="username"
-            value={editedDetails.username || ""}
-            onChange={handleInputChange}
-          />
+    <div className="profile-content">
+      <div
+        className={"profile-container"}
+        style={{ height: editMode && !passwordMode ? "700px" : "700px" }}
+      >
+        {!passwordMode ? (
+          <>
+            <h1>Profile</h1>
+            <div className="profile-input-container">
+              <div className="profile-input">
+                <label>Name</label>
+                {editMode && !passwordMode ? (
+                  <input
+                    type="text"
+                    name="username"
+                    value={editedDetails.username || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <div className="data">{userDetails.username}</div>
+                )}
+              </div>
+              <div className="profile-input">
+                <label>Email</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="email"
+                    value={editedDetails.email || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <div className="data">{userDetails.email}</div>
+                )}
+              </div>
+            </div>
+          </>
         ) : (
-          <div>{userDetails.username}</div>
+          <>
+            <h1>Change Password</h1>
+          </>
         )}
-      </div>
-      <div className="profile-input">
-        <label>Email:</label>
-        {editMode ? (
-          <input
-            type="text"
-            name="email"
-            value={editedDetails.email || ""}
-            onChange={handleInputChange}
-          />
-        ) : (
-          <div>{userDetails.email}</div>
+        {passwordMode && (
+          <div className="edit-container">
+            <div className="profile-input">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <div className="profile-input">
+              <input
+                type="password"
+                placeholder="New Password"
+                name="newPassword"
+                value={newPassword}
+                onChange={handleNewPasswordChange}
+              />
+            </div>
+            <div className="profile-input">
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+              />
+            </div>
+          </div>
         )}
-      </div>
-      <div className="profile-theme">
-        <label>Theme Preference:</label>
-        <div className="radio-buttons">
-          <label>
-            <input
-              type="radio"
-              value="light"
-              checked={selectedTheme === "light"}
-              onChange={handleThemeChange}
-            />
-            Light
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="dark"
-              checked={selectedTheme === "dark"}
-              onChange={handleThemeChange}
-            />
-            Dark
-          </label>
+        <div className="profile-buttons">
+          {editMode ? (
+            <div className="btns">
+              <button onClick={updateUserDetails} className="save">
+                Save Changes
+              </button>
+              <button onClick={handleCancelEdit} className="cancel">
+                Cancel
+              </button>
+              <button onClick={handleBack} className="back">
+                Back
+              </button>
+            </div>
+          ) : !editMode && passwordMode ? (
+            <>
+              <div className="btns">
+                <button onClick={changeUserPassword} className="pass-btn">
+                  Update Password
+                </button>
+                <button onClick={handleCancelPasswordMode} className="cancel">
+                  Cancel
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="btns">
+                <button onClick={handleBack} className="back">
+                  Back
+                </button>
+                <button onClick={handleEditClick} className="edit">
+                  Edit Profile
+                </button>
+              </div>
+            </>
+          )}
+          <div className="last-btns">
+            <button onClick={handlePasswordMode} className="new-pass">
+              Change Password
+            </button>
+            <button onClick={handleLogout} className="logout">
+              Logout
+            </button>
+            <button onClick={deleteUserAccount} className="delete">
+              Delete Account
+            </button>
+          </div>
         </div>
-      </div>
-      {editMode && (
-        <>
-          <div className="profile-input">
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <div className="profile-input">
-            <label>New Password:</label>
-            <input
-              type="password"
-              name="newPassword"
-              value={newPassword}
-              onChange={handleNewPasswordChange}
-            />
-          </div>
-          <div className="profile-input">
-            <label>Confirm Password:</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-            />
-          </div>
-          <button onClick={changeUserPassword}>Change Password</button>
-        </>
-      )}
-      <div className="profile-buttons">
-        {editMode ? (
-          <>
-            <button onClick={updateUserDetails}>Save Changes</button>
-            <button onClick={handleBack}>Back</button>
-            <button onClick={handleCancelEdit}>Cancel</button>
-          </>
-        ) : (
-          <>
-            <button onClick={handleBack}>Back</button>
-            <button onClick={handleEditClick}>Edit Profile</button>
-            <button onClick={deleteUserAccount}>Delete Account</button>
-          </>
-        )}
-        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );
