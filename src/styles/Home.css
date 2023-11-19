@@ -1,17 +1,34 @@
 .main-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  height: auto;
+  background-color: #e0f7fa; 
+}
+.main-content{
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   height: 88vh;
+  margin-top: 60px;
+  height: auto;
 }
-.add-btn-container{
+.main-content button:hover{
+  opacity: 88%;
+}
+.main-content button:active{
+  opacity: 98%;
+}
+
+.add-btn-container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
+
 .add-button {
-  background-color: #4caf50;
+  background-color: #1976d2; 
   color: white;
   padding: 15px;
   width: 100px;
@@ -24,6 +41,7 @@
 
 .search-container {
   margin-bottom: 16px;
+  text-transform: capitalize;
 }
 
 .tag-select {
@@ -33,6 +51,7 @@
 .notes-heading {
   font-size: 20px;
   margin-bottom: 8px;
+  color: #388e3c; 
 }
 
 .notes-list {
@@ -43,22 +62,45 @@
 }
 
 .note-item {
-  border: 1px solid #ddd;
   margin: 15px;
   padding: 10px;
-  width: 270px;
-  height: 300px;
+  width: 250px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
+  border: 1px solid #ddd;
+  background-color: #e8f5e9; 
 }
-
 .tag-input {
   width: 200px;
   padding: 5px;
   margin-right: 10px;
 }
+
+.tag {
+  background-color: #43a047; 
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.edit-button,
+.show-button {
+  background-color: #1976d2; /* Dark blue */
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 
 @media screen and (max-width: 768px) {
   .notes-list {

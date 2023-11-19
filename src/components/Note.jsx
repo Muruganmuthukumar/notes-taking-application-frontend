@@ -12,6 +12,7 @@ function Note({notes, handleShow, handleEditClick}) {
             <div className='note-content'>
                 <p >{note.content}</p>
             </div>
+              <h4>Tags</h4>
               <div className='tags'>
                 {note.tags.map((tag, index) => (
                   <p className='tag' key={index}>{tag}</p>

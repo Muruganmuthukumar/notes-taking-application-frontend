@@ -22,13 +22,13 @@
     padding: 10px;
 }
 .card p{
-    font-size: 20px;
+    font-size: 18px;
     text-transform: capitalize;
     font-weight:500 ;
 }
 .card button{
-    height: 45px;
-    width: 115px;
+    height: 40px;
+    width: 100px;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -38,12 +38,12 @@
     cursor: pointer;
 }
 .card button:first-child{
-    background-color: rgb(241, 25, 25);
-    color: #fdfdfc;
+    background-color: #43a047;
+    color: #fff;
 }
 .card button:last-child{
-    background-color: rgb(158, 158, 158);
-    color: #555;
+    background-color: rgb(231, 47, 47);
+    color: #fff;
 }
 .card .btn-container{
     width: 400px;

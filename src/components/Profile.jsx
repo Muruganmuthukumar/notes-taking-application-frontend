@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Profile.css";
 
@@ -10,8 +10,10 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMode, setPasswordMode] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
+  const profileImageInputRef = useRef(null);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -45,13 +47,19 @@ const Profile = () => {
 
   const updateUserDetails = async () => {
     try {
+      const updatedDetails = { ...editedDetails };
+      if (profileImage) {
+        const base64Image = await convertImageToBase64(profileImage);
+        updatedDetails.profileImage = base64Image;
+      }
+
       await fetch(`http://localhost:5000/api/users/${userId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(editedDetails),
+        body: JSON.stringify(updatedDetails),
       });
       setEditMode(false);
     } catch (error) {
@@ -59,9 +67,20 @@ const Profile = () => {
     }
   };
 
+  const convertImageToBase64 = (image) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(image);
+    });
+  };
+
   const changeUserPassword = async () => {
     try {
-      await fetch(`http://localhost:5000/api/users/${userId}/change-password`, {
+      await fetch(`http://localhost:5000/api/users/${userId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -117,6 +136,11 @@ const Profile = () => {
     setPasswordMode(false);
   };
 
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    setProfileImage(file);
+  };
+
   const handleLogout = () => {
     localStorage.clear();
     navigate("/sign-in");
@@ -138,19 +162,78 @@ const Profile = () => {
   return (
     <div className="profile-content">
       <div
-        className={"profile-container"}
-        style={{ height: editMode && !passwordMode ? "700px" : "700px" }}
+        className="profile-container"
+        // style={{ height: editMode && !passwordMode ? "900px" : "700px" }}
       >
         {!passwordMode ? (
           <>
             <h1>Profile</h1>
             <div className="profile-input-container">
               <div className="profile-input">
+                <label>Profile Image</label>
+                {editMode && !passwordMode ? (
+                  <>
+                    <input
+                      type="file"
+                      name="profileImage"
+                      accept="image/*"
+                      onChange={handleProfileImageChange}
+                      ref={profileImageInputRef}
+                      style={{ display: "none" }}
+                    />
+                    <div
+                      className="profile-image-container"
+                      onClick={() => profileImageInputRef.current.click()}
+                    >
+                      {profileImage ? (
+                        <img
+                          src={URL.createObjectURL(profileImage)}
+                          alt="Profile"
+                          className="profile-image"
+                        />
+                      ) : (
+                        <div className="default-profile-image">
+                          <img
+                            src={userDetails.profileImage}
+                            alt="Default Profile"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <div className="data">
+                    {profileImage ? (
+                      <img
+                        src={URL.createObjectURL(profileImage)}
+                        alt="Profile"
+                        className="profile-image"
+                      />
+                    ) : userDetails.profileImage ? (
+                      <img
+                        src={userDetails.profileImage}
+                        alt="Profile"
+                        className="profile-image"
+                      />
+                    ) : (
+                      <div className="default-profile-image">
+                        <img
+                          src={userDetails.profileImage || ""}
+                          alt="Default Profile"
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="profile-input">
                 <label>Name</label>
                 {editMode && !passwordMode ? (
                   <input
                     type="text"
                     name="username"
+                    autoFocus
                     value={editedDetails.username || ""}
                     onChange={handleInputChange}
                   />
@@ -175,7 +258,7 @@ const Profile = () => {
           </>
         ) : (
           <>
-            <h1>Change Password</h1>
+            <h1>Update Password</h1>
           </>
         )}
         {passwordMode && (
@@ -212,21 +295,21 @@ const Profile = () => {
         <div className="profile-buttons">
           {editMode ? (
             <div className="btns">
+              <button onClick={handleBack} className="back">
+                Back
+              </button>
               <button onClick={updateUserDetails} className="save">
                 Save Changes
               </button>
               <button onClick={handleCancelEdit} className="cancel">
                 Cancel
               </button>
-              <button onClick={handleBack} className="back">
-                Back
-              </button>
             </div>
           ) : !editMode && passwordMode ? (
             <>
               <div className="btns">
                 <button onClick={changeUserPassword} className="pass-btn">
-                  Update Password
+                  Change Password
                 </button>
                 <button onClick={handleCancelPasswordMode} className="cancel">
                   Cancel

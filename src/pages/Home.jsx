@@ -74,44 +74,46 @@ function Home() {
   return (
     <>
       <main className="main-container">
-        <div className="add-btn-container">
-          <button className="add-button" onClick={handleAddNote}>
-            Add Note
-          </button>
-        </div>
-        <div className="search-container">
-          <Select
-            className="tag-select"
-            options={allTags}
-            isMulti
-            placeholder="Filter by tags"
-            value={selectedTags}
-            onChange={handleTagChange}
-          />
-        </div>
-        <div>
-          {show && (
-            <Card
-              handleDeleteNote={handleDeleteNote}
-              editingId={editingId}
-              show={show}
-              setShow={setShow}
+        <div className="main-content">
+          <div className="add-btn-container">
+            <button className="add-button" onClick={handleAddNote}>
+              Add Note
+            </button>
+          </div>
+          <div className="search-container">
+            <Select
+              className="tag-select"
+              options={allTags}
+              isMulti
+              placeholder="Filter by tags"
+              value={selectedTags}
+              onChange={handleTagChange}
             />
-          )}
-          <h2 className="notes-heading">Notes</h2>
-          {filteredNotes.length === 0 ? (
-            <p className="no-notes-message">
-              No notes found. Create a new note!
-            </p>
-          ) : (
-            <ul className="notes-list">
-              <Note
-                notes={filteredNotes}
-                handleEditClick={handleEditClick}
-                handleShow={handleShow}
+          </div>
+          <div>
+            {show && (
+              <Card
+                handleDeleteNote={handleDeleteNote}
+                editingId={editingId}
+                show={show}
+                setShow={setShow}
               />
-            </ul>
-          )}
+            )}
+            <h2 className="notes-heading">Notes</h2>
+            {filteredNotes.length === 0 ? (
+              <p className="no-notes-message">
+                No notes found. Create a new note!
+              </p>
+            ) : (
+              <ul className="notes-list">
+                <Note
+                  notes={filteredNotes}
+                  handleEditClick={handleEditClick}
+                  handleShow={handleShow}
+                />
+              </ul>
+            )}
+          </div>
         </div>
       </main>
     </>

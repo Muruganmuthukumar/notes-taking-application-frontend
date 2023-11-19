@@ -22,9 +22,7 @@ const Navbar = () => {
       .then((data) => setUser(data))
       .catch((err) => console.log(err));
   }, [userId]);
-  const userName = user.username;
-  const userFirstLetter = userName ? userName[0].toUpperCase() : "";
-
+  // console.log(user);
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -35,8 +33,7 @@ const Navbar = () => {
       {userId?
         <div className="navbar-right">
           <div className="profile" onClick={handleClick}>
-            <div className="profile-image">{userFirstLetter}</div>
-            <div className="profile-name">{userName}</div>
+            <div className="profile-image"><img src={user.profileImage} alt="" /></div>
           </div>
         </div>
       :""}
